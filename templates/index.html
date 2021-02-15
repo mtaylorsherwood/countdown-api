@@ -6,6 +6,41 @@
     <link rel="stylesheet" href='/static/style.css' />
 </head>
 <body>
-<h1>Hello world</h1>
+<h1>Anagram Solver</h1>
+<form>
+    <label for="ana">Anagram:</label>
+    <input type="text" id="ana">
+</form>
+<button type="button" onclick="solve()">Solve it!</button>
+<p>
+    Solved anagram result: <span id="solved"></span>
+</p>
+<script>
+//let anagram = 'epstonuri';
+
+const settings = {
+            method: 'POST',
+            headers: {
+                Accept: 'text/plain',
+                'Content-Type': 'text/plain',
+            },
+            mode: 'same-origin'
+};
+
+function solve() {
+    let anagram = document.getElementById("ana").value;
+
+    if (anagram.length === 0) {
+        document.getElementById("solved").innerHTML = 'No word provided';
+    } else {
+        fetch(`http://127.0.0.1:5000?anagram=${anagram}`, settings)
+            .then(function (response) {
+                return response.text()
+            }).then(function(data) {
+                document.getElementById("solved").innerHTML = data;
+            });
+    }
+}
+</script>
 </body>
 </html>

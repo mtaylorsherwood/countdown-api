@@ -1,5 +1,3 @@
-import random
-
 from flask import Flask, render_template, request
 import twl
 
@@ -15,9 +13,7 @@ def index():
 
 
 def anagram(a):
-    l = list(twl.anagram(a))
-    r = random.randint(0, len(l))
-    return r
+    return max(list(twl.anagram(a)), key=len)
 
 
 if __name__ == '__main__':
