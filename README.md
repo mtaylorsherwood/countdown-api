@@ -6,6 +6,8 @@ Silly project to use a scrabble dictionary to get possible words from an anagram
 
 ### February 2021
 
+- Moved to using Bootstrap for styling
+
 - Can call the server via api tool or by submitting the contents of a form field
 - Update to get the longest string from the list of results
 

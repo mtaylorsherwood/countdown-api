@@ -1,46 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-    <link rel="stylesheet" href='/static/style.css' />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+    <title>Anagram Solver</title>
 </head>
 <body>
-<h1>Anagram Solver</h1>
-<form>
-    <label for="ana">Anagram:</label>
-    <input type="text" id="ana">
-</form>
-<button type="button" onclick="solve()">Solve it!</button>
-<p>
-    Solved anagram result: <span id="solved"></span>
-</p>
+<div class="container">
+    <div class="row justify-content-md-center mt-4">
+        <div class="col-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    Anagram Solver
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Anagram</h5>
+                    <form class="mt-2 mb-2">
+                        <label for="ana">Anagram:</label>
+                        <input type="text" id="ana">
+                    </form>
+                    <p>
+                        <button type="button" class="btn btn-primary" onclick="solve()">Solve it!</button>
+                    </p>
+                </div>
+                <div class="card-footer text-muted">
+                    <p>
+                        Solved anagram result: <strong><span id="solved"></span></strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
-//let anagram = 'epstonuri';
+    //let anagram = 'epstonuri';
 
-const settings = {
-            method: 'POST',
-            headers: {
-                Accept: 'text/plain',
-                'Content-Type': 'text/plain',
-            },
-            mode: 'same-origin'
-};
+    const settings = {
+        method: 'POST',
+        headers: {
+            Accept: 'text/plain',
+            'Content-Type': 'text/plain',
+        },
+        mode: 'same-origin'
+    };
 
-function solve() {
-    let anagram = document.getElementById("ana").value;
+    function solve() {
+        let anagram = document.getElementById("ana").value;
 
-    if (anagram.length === 0) {
-        document.getElementById("solved").innerHTML = 'No word provided';
-    } else {
-        fetch(`http://127.0.0.1:5000?anagram=${anagram}`, settings)
-            .then(function (response) {
-                return response.text()
-            }).then(function(data) {
+        if (anagram.length === 0) {
+            document.getElementById("solved").innerHTML = 'No word provided';
+        } else {
+            fetch(`http://127.0.0.1:5000?anagram=${anagram}`, settings)
+                .then(function (response) {
+                    return response.text()
+                }).then(function (data) {
                 document.getElementById("solved").innerHTML = data;
             });
+        }
     }
-}
 </script>
 </body>
 </html>

@@ -13,6 +13,7 @@ def index():
 
 
 def anagram(a):
+    print(twl.anagram('asrtonomer'))
     return max(list(twl.anagram(a)), key=len)
 
 
